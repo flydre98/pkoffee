@@ -8,3 +8,13 @@ jobs:
       - name: Say Hello
         run: echo "Hello, GitHub Actions!"
         run: echo "Running tests on OS $({ runner.os })"
+        run: echo "Repository: ${{ github.repository }}"
+        run: echo "Branch: ${{ github.ref }}"
+      - name: Checkout code
+        uses: actions/checkout@v6
+      - name: Install pixi
+        uses: prefix-dev/pixi-action@v0.9.3
+        with:
+          pixi-version: v0.63.0
+      - name: Run tests
+        run: pixi run pytest
