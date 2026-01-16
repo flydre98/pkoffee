@@ -1,0 +1,10 @@
+name: github CI workflow
+on: [push]
+
+jobs:
+  say-hello: 
+    runs-on: ubuntu-latest
+    steps:
+      - name: Say Hello
+        run: echo "Hello, GitHub Actions!"
+        run: echo "Running tests on OS $({ runner.os })"
