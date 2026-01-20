@@ -33,7 +33,7 @@ jobs:
 
       - name: Build Apptainer image
         run: |
-          apptainer build pkoffee.sif pkoffee.def
+          apptainer build --fakeroot pkoffee.sif pkoffee.def
 
       - name: Push to GitHub Container Registry
         run: |
