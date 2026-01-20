@@ -22,18 +22,15 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up Apptainer
-        uses: eWaterCycle/setup-apptainer@v2
+      - name: Build Apptainer Container
+        uses: apptainer/build-actions@v1.0.0
         with:
-          apptainer-version: 1.3.0
+          recipe: pkoffee.def
+          output: pkoffee.sif
 
       - name: Log in to GitHub Container Registry
         run: |
           echo "${{ secrets.GITHUB_TOKEN }}" | apptainer remote login -u ${{ github.actor }} --password-stdin oras://ghcr.io
-
-      - name: Build Apptainer image
-        run: |
-          apptainer build --fakeroot pkoffee.sif pkoffee.def
 
       - name: Push to GitHub Container Registry
         run: |
