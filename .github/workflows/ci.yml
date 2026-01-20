@@ -24,3 +24,16 @@ jobs:
         with:
           pixi-version: v0.62.2 # good to pin this since pixi is not 1.0 yet!
       - run: pixi run pytest
+  build:
+    needs: unit-tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build docs
+        run: pixi run sphinx-build -b html docs/source docs/build/html
+
+      - name: Deploy docs github
+        uses: peaceiris/actions-gh-pages@v3
+        if: github.ref == 'refs/head/main'
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: docs/build/html
