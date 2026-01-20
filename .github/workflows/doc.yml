@@ -6,6 +6,11 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
+      - name: Install pixi
+        uses: prefix-dev/setup-pixi@v0.9.3
+        with:
+          pixi-version: v0.63.0
       - name: Build docs
         run: pixi run sphinx-build -b html docs/source docs/build/html
 
