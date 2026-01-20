@@ -1,3 +1,6 @@
+import sys
+from pathlib import Path
+
 # Configuration file for the Sphinx documentation builder.
 #
 # For the full list of built-in configuration values, see the documentation:
@@ -26,9 +29,6 @@ exclude_patterns = []
 
 html_theme = 'sphinx_rtd_theme'
 html_static_path = ['_static']
-
-import sys
-from pathlib import Path
 
 curr_dir = Path(__file__).resolve().parent
 root_path = curr_dir.parents[2]
