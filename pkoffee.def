@@ -1,0 +1,34 @@
+Bootstrap: docker
+From: ubuntu:22.04
+
+%files
+    pixi.toml /opt/pkoffee/pixi.toml
+    pixi.lock /opt/pkoffee/pixi.lock
+    pyproject.toml /opt/pkoffee/pyproject.toml
+    # Add your source code here
+    src /opt/pkoffee/src
+    analysis /opt/pkoffee/analysis
+    README.md /opt/pkoffee/README.md
+    LICENSE /opt/pkoffee/LICENSE
+
+%post
+    # Install basic dependencies
+    apt-get update && apt-get install -y curl
+    
+    # Install Pixi
+    curl -fsSL https://pixi.sh/install.sh | bash
+    export PATH="/root/.pixi/bin:$PATH"
+    
+    # Navigate to project directory
+    cd /opt/pkoffee
+    
+    # Install the pixi environment
+    /root/.pixi/bin/pixi install
+
+%environment
+    export PATH="/root/.pixi/bin:$PATH"
+    export PIXI_PROJECT_ROOT="/opt/pkoffee"
+
+%runscript
+    cd /opt/pkoffee
+    exec pixi run "$@"
