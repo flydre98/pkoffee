@@ -27,7 +27,7 @@ exclude_patterns = []
 html_theme = 'sphinx_rtd_theme'
 html_static_path = ['_static']
 
-import os, sys
+import sys
 from pathlib import Path
 
 curr_dir = Path(__file__).resolve().parent
