@@ -6,10 +6,6 @@ on:
       - main
       - master
 
-env:
-  REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.repository }}
-
 jobs:
   build-and-push-image:
     runs-on: ubuntu-latest
@@ -22,17 +18,23 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Build Apptainer Container
-        uses: apptainer/build-actions@v1.0.0
-        with:
-          recipe: pkoffee.def
-          output: pkoffee.sif
+      - name: Build Apptainer image using Docker
+        run: |
+          docker run --rm --privileged \
+            -v $(pwd):/work \
+            quay.io/singularity/singularity:v3.11.0 \
+            build /work/pkoffee.sif /work/pkoffee.def
 
       - name: Log in to GitHub Container Registry
         run: |
-          echo "${{ secrets.GITHUB_TOKEN }}" | apptainer remote login -u ${{ github.actor }} --password-stdin oras://ghcr.io
+          echo "${{ secrets.GITHUB_TOKEN }}" | docker run --rm -i \
+            -v $(pwd):/work \
+            quay.io/singularity/singularity:v3.11.0 \
+            remote login -u ${{ github.actor }} --password-stdin oras://ghcr.io
 
       - name: Push to GitHub Container Registry
         run: |
-          apptainer push pkoffee.sif oras://ghcr.io/${{ github.repository }}:latest
-          apptainer push pkoffee.sif oras://ghcr.io/${{ github.repository }}:${{ github.sha }}
+          docker run --rm \
+            -v $(pwd):/work \
+            quay.io/singularity/singularity:v3.11.0 \
+            push /work/pkoffee.sif oras://ghcr.io/${{ github.repository }}:latest
