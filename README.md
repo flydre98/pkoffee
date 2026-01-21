@@ -92,5 +92,5 @@ jupyterlab
 
 MIT License
 
+[![fair-software.eu](https://img.shields.io/badge/fair--software.eu-%E2%97%8F%20%20%E2%97%8F%20%20%E2%97%8B%20%20%E2%97%8F%20%20%E2%97%8B-orange)](https://fair-software.eu)
 [![Documentation](https://github.com/flydre98/pkoffee/actions/workflows/doc.yml/badge.svg)](https://github.com/flydre98/pkoffee/actions/workflows/doc.yml)
-[![fair-software.eu](https://img.shields.io/badge/fair--software.eu-%E2%97%8F%20%20%E2%97%8F%20%20%E2%97%8B%20%20%E2%97%8B%20%20%E2%97%8B-orange)](https://fair-software.eu)
