@@ -91,3 +91,5 @@ jupyterlab
 ## License
 
 MIT License
+
+[![Documentation](https://github.com/flydre98/pkoffee/actions/workflows/doc.yml/badge.svg)](https://github.com/flydre98/pkoffee/actions/workflows/doc.yml)
