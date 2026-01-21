@@ -1,0 +1,20 @@
+{
+"@context": "https://doi.org/10.5063/schema/codemeta-2.0",
+"@type": "SoftwareSourceCode",
+"name": "My Research Software",
+"description": "A tool for scientific data analysis",
+"version": "1.0.0",
+"author": [{
+"@type": "Person",
+"givenName": "Lorenzo",
+"familyName": "Silvestri",
+"email": "lorenzo.silvestri@uniroma1.it",
+"affiliation": {
+"@type":"Organization",
+"name": "University of Rome"
+}
+}],
+"license": "https://spdx.org/licenses/MIT",
+"programmingLanguage": "Python",
+"codeRepository": "https://github.com/flydre98/pkoffee"
+}
